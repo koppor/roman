@@ -46,7 +46,19 @@ class InvalidRomanNumeralError(RomanError):
 
 
 # Define digit mapping
-romanNumeralMap = (('M', 1000),
+romanNumeralMap = (('M̄', 1_000_000),
+                   ('C̄M̄', 900_000),
+                   ('D̄', 500_000),
+                   ('C̄D̄', 400_000),
+                   ('C̄', 100_000),
+                   ('X̄C̄', 90_000),
+                   ('L̄', 50_000),
+                   ('X̄L̄', 40_000),
+                   ('X̄', 10_000),
+                   ('ĪX̄', 9_000),
+                   ('V̄', 5_000),
+                   ('ĪV̄', 4_000),
+                   ('M', 1000),
                    ('CM', 900),
                    ('D', 500),
                    ('CD', 400),
@@ -65,8 +77,8 @@ def toRoman(n):
     """convert integer to Roman numeral"""
     if not isinstance(n, int):
         raise NotIntegerError("decimals cannot be converted")
-    if not (-1 < n < 5000):
-        raise OutOfRangeError("number out of range (must be 0..4999)")
+    if not (-1 < n < 3_999_999):
+        raise OutOfRangeError("number out of range (must be 0..3,999,999)")
 
     # special case
     if n == 0:
@@ -81,8 +93,13 @@ def toRoman(n):
 
 
 # Define pattern to detect valid Roman numerals
+# Ī is U+012A, the other overlined characters are made with U+0304.
 romanNumeralPattern = re.compile("""
     ^                   # beginning of string
+    M̄{0,4}
+    (C̄M̄|C̄D̄|D̄?C̄{0,3})
+    (X̄C̄|X̄L̄|L̄?X̄{0,3})
+    (ĪX̄|ĪV̄|V̄?Ī{0,3})
     M{0,4}              # thousands - 0 to 4 M's
     (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 C's),
                         #            or 500-800 (D, followed by 0 to 3 C's)
