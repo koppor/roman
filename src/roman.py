@@ -45,7 +45,6 @@ class InvalidRomanNumeralError(RomanError):
     pass
 
 
-
 # Define digit mapping
 romanNumeralMap = (('M̄', 1_000_000),
                    ('C̄M̄', 900_000),
