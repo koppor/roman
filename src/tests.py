@@ -23,7 +23,7 @@ TEST_MAP = ((0, 'N'), (1, 'I'), (3, 'III'), (4, 'IV'), (9, 'IX'), (14, 'XIV'),
             (19, 'XIX'), (24, 'XXIV'), (40, 'XL'), (49, 'XLIX'), (90, 'XC'),
             (99, 'XCIX'), (400, 'CD'), (490, 'CDXC'), (499, 'CDXCIX'),
             (900, 'CM'), (990, 'CMXC'), (998, 'CMXCVIII'), (999, 'CMXCIX'),
-            (2013, 'MMXIII'), (1666666, 'M̄D̄C̄L̄X̄V̄MDCLXVI'))
+            (2013, 'MMXIII'), (999_999, 'C̄M̄X̄C̄ĪX̄CMXCIX'), (1_666_666, 'M̄D̄C̄L̄X̄V̄MDCLXVI'))
 
 
 class TestRoman(unittest.TestCase):
